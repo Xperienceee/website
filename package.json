@@ -1,0 +1,113 @@
+{
+  "main": "./src/index.js",
+  "name": "web-app",
+  "license": "MIT",
+  "author": {
+    "name": "Zayn Jarvis",
+    "email": "zaynjarvis@gmail.com",
+    "url": "https://zaynjarvis.com"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel ./src/index.html --port=9999 ",
+    "build": "cross-env NODE_ENV=production parcel build ./src/index.html",
+    "lint": "eslint --ignore-path .gitignore --ext=js,jsx --fix ./src "
+  },
+  "dependencies": {
+    "autoprefixer": "latest",
+    "normalize.css": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "typeface-roboto": "^latest"
+  },
+  "devDependencies": {
+    "babel-eslint": "latest",
+    "cross-env": "latest",
+    "eslint": "latest",
+    "eslint-config-airbnb": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-config-react-app": "latest",
+    "eslint-import-resolver-parcel": "latest",
+    "eslint-plugin-flowtype": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-react": "^latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "parcel-bundler": "latest",
+    "prettier": "^latest"
+  },
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
+        "flexbox": "no-2009"
+      }
+    }
+  },
+  "eslintConfig": {
+    "settings": {
+      "import/resolver": {
+        "parcel": {
+          "rootDir": "src",
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      }
+    },
+    "extends": [
+      "react-app",
+      "airbnb",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-unused-vars": [
+        1,
+        {
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "import/no-absolute-path": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "semi": true,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "endOfLine": "lf"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,css}": [
+      "yarn run lint",
+      "git add --force"
+    ]
+  }
+}
